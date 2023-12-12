@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Tablero";    
+}
+@using EspacioKanban
+@model ListarTableroViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Tableros</h1>
+    <table class="table caption-top table-striped table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">ID</th>
+                <th scope="col">ID Propietario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descrpcion</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(TableroViewModel tablero in @Model.TablerosVM){
+                <tr>
+                    <th class="m-auto" scope="row">@tablero.Id</th>
+                    <th class="m-auto" scope="row">@tablero.IdUsuarioPropietario</th>
+                    <td class="m-auto col">@tablero.Nombre</td>
+                    <td class="m-auto col-4">@tablero.Descripcion</td>
+                    <td>
+                        <a asp-controller="Tablero" asp-action="ModificarTablero" asp-route-id="@tablero.Id">Modificar</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Tablero" asp-action="EliminarTablero" asp-route-id="@tablero.Id"
+                        onclick="return confirm('¿Eliminar elemento?')">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-outline-success fs-5 py-2 px-4" asp-area="" asp-controller="Tablero" asp-action="CrearTablero"><i class="bi bi-plus-lg"></i> Crear Tablero</a>
+</div>

@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Agregar Tarea";
+}
+@using EspacioKanban
+@model CrearTareaViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Tarea</h1>
+    <form asp-controller="Tarea" asp-action="CrearTarea">
+        <div class="form-group">
+            <label asp-for="@Model.IdTablero"></label>
+            <input asp-for="@Model.IdTablero" class="form-control" />
+            <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Nombre"></label>
+            <input asp-for="@Model.Nombre" class="form-control" />
+            <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Estado">Estado:</label>
+            <select class="form-select" asp-for="@Model.Estado">
+                <option selected value="0">Ideas</option>
+                <option value="1">ToDo</option>
+                <option value="2">Doing</option>
+                <option value="3">Review</option>
+                <option value="4">Done</option>
+            </select>
+            <span asp-validation-for="@Model.Estado" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Descripcion"></label>
+            <input asp-for="@Model.Descripcion" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Color"></label>
+            <input asp-for="@Model.Color" class="form-control" />
+            <span asp-validation-for="@Model.Color" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.IdUsuarioAsignado"></label>
+            <input asp-for="@Model.IdUsuarioAsignado" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Modificar Tarea";    
+}
+@using EspacioKanban
+@model ModificarTareaViewModel
+
+<div class="text-center d-flex flex-column align-items-center">
+    <h1 class="text-primary">Modificar Tarea</h1>
+    <form class="w-50 my-2 p-4 border border-3 border-primary rounded-2 border-opacity-25" asp-controller="Tarea" asp-action="ModificarTarea">
+        <legend>@Model.Id</legend>
+        <fieldset>
+            <input hidden asp-for="@Model.Id">
+            <div class="mb-3 form-floating">
+                <input class="form-control" asp-for="@Model.IdTablero" aria-describedby="emailHelp" placeholder="Id Tablero" required>
+                <label asp-for="@Model.IdTablero" class="form-label text-center">Id Tablero</label>
+                <span asp-validation-for="@Model.IdTablero" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" asp-for="@Model.Nombre" aria-describedby="emailHelp" placeholder="Nombre de la tarea" required>
+                <label asp-for="@Model.Nombre" class="form-label text-center">Nombre</label>
+                <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <label asp-for="@Model.Estado">Estado: </label>
+                <select class="form-select" asp-for="@Model.Estado">
+                    <option selected value="0">Ideas</option>
+                    <option value="1">ToDo</option>
+                    <option value="2">Doing</option>
+                    <option value="3">Review</option>
+                    <option value="4">Done</option>
+                </select>
+                <span asp-validation-for="@Model.Estado" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" asp-for="@Model.Descripcion" aria-describedby="emailHelp" placeholder="Descripcion" required>
+                <label asp-for="@Model.Descripcion" class="form-label text-center">Descripcion</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <label asp-for="@Model.Color">Color:</label>
+                <input asp-for="@Model.Color" value="@Model.Color">
+                <span asp-validation-for="@Model.Color" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn  btn-outline-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+@section Scripts{<partial name="_ValidationScriptsPartial"/>}

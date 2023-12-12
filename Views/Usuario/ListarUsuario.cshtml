@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+@using EspacioKanban
+@model ListarUsuarioViewModel
+
+<main class="text-center">
+<h2>Lista Usuarios</h2>
+
+<table class="table caption-top table-striped table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th scope="col" hidden>ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Modificar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UsuarioViewModel usuario in @Model.UsuariosVM) // hago uso de la lista que tiene ListarUsuariosViewModel
+        {
+            <tr>
+                <td hidden>@usuario.Id</td>
+                <th class="m-auto" scope="row">@usuario.NombreDeUsuario</th>
+                <td>@usuario.Rol</td>
+                <td>
+                    <a asp-controller="Usuario" asp-action="ModificarUsuario" asp-route-id="@usuario.Id">Modificar</a>
+                </td>
+                <td>
+                    <a asp-controller="Usuario" asp-action="EliminarUsuario" asp-route-id="@usuario.Id"
+                        onclick="return confirm('¿Eliminar elemento?')">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Usuario" asp-action="CrearUsuario">Agregar Usuario</a>
+</main>
