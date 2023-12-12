@@ -128,7 +128,7 @@ public class TableroController : Controller
             }else if(isAdmin()){
                  _tableroRepository.DeleteTablero(id);
             }
-            return RedirectToAction("ListarTarea");
+            return RedirectToAction("ListarTablero");
         }catch (Exception ex){
             _logger.LogError(ex.ToString());
             return RedirectToAction("Error");
